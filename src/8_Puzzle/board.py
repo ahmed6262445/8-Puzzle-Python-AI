@@ -3,20 +3,20 @@ class Board():
     def __init__(self, length: int, breadth: int):
         """
         Parameters:
-            length : It sets the length of the board
-            breadth : It sets the breadth of the board
+            length (int) : It sets the length of the board
+            breadth (int): It sets the breadth of the board
         Members:
-            lenght : Length of the board
-            breadth : Breadth of the board
-            board :  Board itself (It is initialzed by -1 invalide spots)
+            lenght (int): Length of the board
+            breadth (int): Breadth of the board
+            board (list):  Board itself (It is initialzed by -1 invalide spots)
         """
         self.__length = length
         self.__breadth = breadth
         self.__board = [[-1 for j in range(breadth)] for i in range(length)]
+        self.initialize_board()
     
     def initialize_board(self):
         """
-            No parameters
             This simply initializes the 8-Puzzle Board
             it does not neccassrily initialzes in asscending or descending order 
             e.g.
@@ -34,3 +34,9 @@ class Board():
                     generated_list.append(rand_num)
                     self.__board[i][j] = rand_num
                     j += 1
+    
+    def get_board(self) -> str:
+        """
+        Returns a string of the board
+        """
+        return self.__board
