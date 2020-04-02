@@ -10,9 +10,9 @@ class Board():
             breadth : Breadth of the board
             board :  Board itself (It is initialzed by -1 invalide spots)
         """
-        self.length = length
-        self.breadth = breadth
-        self.board = [[-1 for j in range(breadth)] for i in range(length)]
+        self.__length = length
+        self.__breadth = breadth
+        self.__board = [[-1 for j in range(breadth)] for i in range(length)]
     
     def initialize_board(self):
         """
@@ -26,13 +26,11 @@ class Board():
         """
         generated_list = []
         
-        for i in range(self.length):
+        for i in range(self.__length):
             j = 0
-            while j < self.breadth:
+            while j < self.__breadth:
                 rand_num = randint(0,9)
                 if not rand_num in generated_list:
                     generated_list.append(rand_num)
-                    self.board[i][j] = rand_num
+                    self.__board[i][j] = rand_num
                     j += 1
-
-
