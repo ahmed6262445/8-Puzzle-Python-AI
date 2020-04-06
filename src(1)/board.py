@@ -29,7 +29,7 @@ class Board():
         for i in range(self.__length):
             j = 0
             while j < self.__breadth:
-                rand_num = randint(0,9)
+                rand_num = randint(0,8)
                 if not rand_num in generated_list:
                     generated_list.append(rand_num)
                     self.board[i][j] = rand_num
