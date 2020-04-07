@@ -1,10 +1,5 @@
 from board import Board
 from direction import Direction,Coordinate 
-win_state = [
-    [1, 2, 3],
-    [4, 0, 5],
-    [6, 7, 8]
-]
 
 def move(direction: str, state) -> bool:
     """
@@ -70,3 +65,20 @@ def is_valid_move(x:int, y:int,board_length) -> bool:
     if x < 0 or y < 0 or x == board_length or y == board_length:
         return False
     return True
+
+def win_game(board) -> bool:
+    """
+        Returns if the game has been won or not
+    Parameters:
+        board (board.board): The current state of the board
+    Return:
+        return True if current state of the board conforms with the wining state
+    """
+    win_state = [
+        [1, 2, 3],
+        [4, 0, 5],
+        [6, 7, 8]
+    ]
+    if board == win_state:
+        return True
+    return False
