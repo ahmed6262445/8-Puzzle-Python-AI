@@ -25,7 +25,7 @@ class Board():
             3 | 4 | 5
             6 | 7 | 8
         """
-        self.board = reshape(board, (3,3))
+        self.board = reshape(board, (self.__length,self.__breadth))
 
     def print_board(self) -> str:
         """
