@@ -1,6 +1,7 @@
 from random import randint
+from numpy import reshape
 class Board():
-    def __init__(self, length: int, breadth: int):
+    def __init__(self, length: int, breadth: int, board = [[],[],[]]):
         """
         Parameters:
             length (int) : It sets the length of the board
@@ -13,9 +14,9 @@ class Board():
         self.__length = length
         self.__breadth = breadth
         self.board = [[-1 for j in range(breadth)] for i in range(length)]
-        self.initialize_board()
+        self.initialize_board(board)
     
-    def initialize_board(self):
+    def initialize_board(self, board):
         """`
             This simply initializes the 8-Puzzle Board
             it does not neccassrily initialzes in asscending or descending order 
@@ -24,22 +25,7 @@ class Board():
             3 | 4 | 5
             6 | 7 | 8
         """
-        generated_list = []
-        
-        for i in range(self.__length):
-            j = 0
-            while j < self.__breadth:
-                rand_num = randint(0,8)
-                if not rand_num in generated_list:
-                    generated_list.append(rand_num)
-                    self.board[i][j] = rand_num
-                    j += 1
-    
-    # def get_board(self) -> str:
-    #     """
-    #     Returns a string of the board
-    #     """
-    #     return self.__board
+        self.board = reshape(board, (3,3))
 
     def print_board(self) -> str:
         """
