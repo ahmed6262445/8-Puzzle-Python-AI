@@ -2,6 +2,7 @@ import puzzle as game
 import platform
 from board import Board
 from os import system
+from time import sleep
 os_name = platform.system().lower()
 def clear():
     """
@@ -29,15 +30,35 @@ def invserion_count():
 
 
 # print(invserion_count())
-while True:
-    clear()
-    main_input = input("1) Start Game: ")
+if __name__ == "__main__": # while True:
+    input_loop_breaker = False
+    while not input_loop_breaker:
+        clear()
+        user_board = input()
+        user_board = list(user_board) # Converting str -> str list
+        
+        if len(user_board) != 9:
+            print("Input Error!\nExiting...\nGoing Again...")
+            sleep(1)
+            continue
+        else:
+            for i in range(len(user_board)):
+                try:
+                    user_board[i] = int(user_board[i])
+                    input_loop_breaker = True
+                except ValueError:
+                    print(ValueError)
+                    print("Going Again...")
+                    sleep(1)
+                    input_loop_breaker = False
+                    break
+    # List input While Loop Ends
 
-    if main_input == '1':
+    if True:
         clear()
 
         steps = 0
-        board = Board(3,3)
+        board = Board(3,3, user_board)
         win_state = game.win_game(board)
 
         while not win_state:
@@ -69,10 +90,8 @@ while True:
                 game.move(game.Direction.Right, board)
 
             win_state = game.win_game(board)
+
+            if win_state:
+                clear()
+                print(board.print_board())
         # Choice '1' While Loop Ends 
-
-            
-
-
-
-

@@ -79,11 +79,6 @@ def win_game(state) -> bool:
         [4, 0, 5],
         [6, 7, 8]
     ]
-    # win_state = [
-    #     [1, 2, 3],
-    #     [8, 0, 4],
-    #     [7, 6, 5]
-    # ]
     if state.board == win_state:
         return True
     return False
