@@ -6,12 +6,14 @@ win_state = [
     [6, 7, 8]
 ]
 
-def move(direction: str, state):
+def move(direction: str, state) -> bool:
     """
         Gets the input to move the free space in the current state of the board (up, down, left, right)
     Parameter:
         direction (Direction enum) (int) Direction where the to move 
         state (Board): The current state of the board
+    Return:
+        returns if the move was made or not True is yes False if no move made
     """
     board_length = len(state.board)
     x, y = find_empty_space(state.board)
