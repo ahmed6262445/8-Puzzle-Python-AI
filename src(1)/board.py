@@ -40,3 +40,16 @@ class Board():
     #     Returns a string of the board
     #     """
     #     return self.__board
+
+    def print_board(self) -> str:
+        """
+        Returns a string of a printed board
+        """
+        board = ""
+        for i in range(self.__length):
+            for j in range(self.__breadth):
+                board += str(self.board[i][j])
+                if j != 2:
+                    board += " | "
+            board += "\n"
+        return board
