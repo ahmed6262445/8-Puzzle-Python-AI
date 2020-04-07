@@ -11,7 +11,7 @@ def move(direction: str, state) -> bool:
         returns if the move was made or not True is yes False if no move made
     """
     board_length = len(state.board)
-    x, y = find_empty_space(state.board)
+    x, y = find_empty_space(state)
     
     increment_x = 0 
     increment_y = 0
@@ -37,7 +37,7 @@ def move(direction: str, state) -> bool:
         return True
     return False
 
-def find_empty_space(board) -> tuple:
+def find_empty_space(state) -> tuple:
     """
         Finds the empty location (0) value in the board
     Parameters:
@@ -45,10 +45,10 @@ def find_empty_space(board) -> tuple:
     Return:
         returns a tuple of x and y co-ordination of empty location (0)
     """
-    board_length = len(board)
+    board_length = len(state.board)
     for i in range(board_length):
         for j in range(board_length):
-            if board[i][j] == 0:
+            if state.board[i][j] == 0:
                 return (i,j)
 
 def is_valid_move(x:int, y:int,board_length) -> bool:
@@ -66,11 +66,11 @@ def is_valid_move(x:int, y:int,board_length) -> bool:
         return False
     return True
 
-def win_game(board) -> bool:
+def win_game(state) -> bool:
     """
         Returns if the game has been won or not
     Parameters:
-        board (board.board): The current state of the board
+        state (Board): The current state of the board
     Return:
         return True if current state of the board conforms with the wining state
     """
@@ -79,6 +79,11 @@ def win_game(board) -> bool:
         [4, 0, 5],
         [6, 7, 8]
     ]
-    if board == win_state:
+    # win_state = [
+    #     [1, 2, 3],
+    #     [8, 0, 4],
+    #     [7, 6, 5]
+    # ]
+    if state.board == win_state:
         return True
     return False
