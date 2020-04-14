@@ -41,7 +41,7 @@ def find_empty_space(state) -> tuple:
     """
         Finds the empty location (0) value in the board
     Parameters:
-        state: The current state of the board
+        state (Board Obj): The current state of the board
     Return:
         returns a tuple of x and y co-ordination of empty location (0)
     """
@@ -66,11 +66,38 @@ def is_valid_move(x:int, y:int,board_length) -> bool:
         return False
     return True
 
+def invserion_count(state) -> int:
+    """
+        Counts how many of the tiles are misplaced from the right position
+    Parameters:
+        state (list): The current state of the board
+    Return:
+        Returns the cound of how many tiles are misplace from the right position
+    """
+    inv_count = 0
+    board_len = len(state)
+    for i in range(board_len):
+        for j in range(i+1,board_len):
+            if state[i] and state[j] and state[i] >= state[j]:
+                inv_count += 1
+    return inv_count
+
+def is_solvable(state) -> bool:
+    """
+        Checks if the configuration of the board is solvable or not
+    Parameters:
+        state (list): The current state of the board
+    Return:
+        Returns true if the configuration is solvable
+    """
+    inv_count = invserion_count(state)
+    return inv_count%2 == 0
+
 def win_game(state) -> bool:
     """
         Returns if the game has been won or not
     Parameters:
-        state (Board): The current state of the board
+        state (Board obj): The current state of the board
     Return:
         return True if current state of the board conforms with the wining state
     """

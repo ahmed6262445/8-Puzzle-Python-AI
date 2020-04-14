@@ -15,21 +15,6 @@ def clear():
 
 import getch
 
-
-
-def invserion_count():
-    # arr = [0,2,3,4,1,6,5,8,7]
-    arr = [5,2,4,3,8,7,6,0,1]
-    inv_count = 0
-
-    for i in range(8):
-        for j in range(i+1, 8):
-            if arr[i] > arr[j]:
-                inv_count += 1
-    return inv_count
-
-
-# print(invserion_count())
 if __name__ == "__main__": # while True:
     input_loop_breaker = False
     while not input_loop_breaker:
@@ -52,8 +37,12 @@ if __name__ == "__main__": # while True:
                     sleep(1)
                     input_loop_breaker = False
                     break
+        is_solvable = game.is_solvable(user_board)
+        if not is_solvable:
+            print("Cannot be solved bye...")
+            exit()
+            sleep(2)
     # List input While Loop Ends
-
     if True:
         clear()
 
@@ -65,13 +54,12 @@ if __name__ == "__main__": # while True:
             clear()
             user_input = 0
             print(board.print_board())
-            if True:#steps == 0:
+            if True:
                 print(f"Movement\n'w' to move UP\n's' to move DOWN\n'a' to move LEFT\n'd' to move Right\n\n")
                 
                 while True:
                     # user_input = input("Enter initial input: ")
                     user_input = getch.getch()
-
                     if user_input != 'w' and user_input != 's' and user_input != 'a' and user_input != 'd':
                         print("Invlaide Input...")
                         continue
@@ -79,7 +67,7 @@ if __name__ == "__main__": # while True:
             else:
                 # Ai moves
                 pass
-
+                
             if user_input == 'w':
                 game.move(game.Direction.Up, board)
             elif user_input == 's':

@@ -2,7 +2,7 @@ from random import randint
 from numpy import reshape
 from time import sleep
 class Board():
-    def __init__(self, length: int, breadth: int, board = [[],[],[]]):
+    def __init__(self, length: int, breadth: int, board):
         """
         Parameters:
             length (int) : It sets the length of the board
@@ -14,11 +14,11 @@ class Board():
         """
         self.__length = length
         self.__breadth = breadth
-        self.board = []
+        self.board =  list()
         self.initialize_board(board)
-    
+
     def initialize_board(self, board):
-        """`
+        """
             Convertes the 1d List to 3d List 
             e.g.
             [1, 2 , 3, 4, 5 ,6 , 7, 8, 0]
@@ -27,16 +27,18 @@ class Board():
             3 | 4 | 5
             6 | 7 | 8
         """
-        index = 0 # To keep track of index in the main loop
-        for i in range(self.__length):
-            temp_list = []
-            for j in range(self.__breadth):
-                temp_list.append(board[index])
-                index += 1
-            self.board.append(temp_list)
+        self.board = self.reshape_array(self.__length, self.__breadth, board)
 
-    def reshape_array(self,row: int, column: int, arr = []) -> list:
-        pass
+    def reshape_array(self,row: int, col: int, arr = []) -> list:
+        index = 0
+        return_list = []
+        for i in range(row):
+            temp_list = []
+            for j in range(col):
+                temp_list.append(arr[index])
+                index += 1
+            return_list.append(temp_list)
+        return return_list
 
     def print_board(self) -> str:
         """
