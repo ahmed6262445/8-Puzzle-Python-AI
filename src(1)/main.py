@@ -63,19 +63,18 @@ if __name__ == "__main__": # while True:
                     if user_input != 'w' and user_input != 's' and user_input != 'a' and user_input != 'd':
                         print("Invlaide Input...")
                         continue
+                    if user_input == 'w':
+                        game.move(game.Direction.Up, board)
+                    elif user_input == 's':
+                        game.move(game.Direction.Down, board)
+                    elif user_input == 'a':
+                        game.move(game.Direction.Left, board)
+                    elif user_input == 'd':
+                        game.move(game.Direction.Right, board)
                     break 
             else:
                 # Ai moves
                 pass
-                
-            if user_input == 'w':
-                game.move(game.Direction.Up, board)
-            elif user_input == 's':
-                game.move(game.Direction.Down, board)
-            elif user_input == 'a':
-                game.move(game.Direction.Left, board)
-            elif user_input == 'd':
-                game.move(game.Direction.Right, board)
 
             win_state = game.win_game(board)
 
