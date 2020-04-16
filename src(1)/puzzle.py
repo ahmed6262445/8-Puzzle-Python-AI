@@ -1,6 +1,12 @@
 from board import Board
 from direction import Direction,Coordinate 
 
+win_state = [
+        [1, 2, 3],
+        [4, 0, 5],
+        [6, 7, 8]
+    ]
+
 def move(direction: str, state) -> bool:
     """
         Gets the input to move the free space in the current state of the board (up, down, left, right)
@@ -101,11 +107,6 @@ def win_game(state) -> bool:
     Return:
         return True if current state of the board conforms with the wining state
     """
-    win_state = [
-        [1, 2, 3],
-        [4, 0, 5],
-        [6, 7, 8]
-    ]
     if state.board == win_state:
         return True
     return False

@@ -3,6 +3,7 @@ import platform
 from board import Board
 from os import system
 from time import sleep
+import A_star_search as ai
 os_name = platform.system().lower()
 def clear():
     """
@@ -54,9 +55,9 @@ if __name__ == "__main__": # while True:
             clear()
             user_input = 0
             print(board.print_board())
-            if True:
+            
+            if False:
                 print(f"Movement\n'w' to move UP\n's' to move DOWN\n'a' to move LEFT\n'd' to move Right\n\n")
-                
                 while True:
                     # user_input = input("Enter initial input: ")
                     user_input = getch.getch()
@@ -73,10 +74,9 @@ if __name__ == "__main__": # while True:
                         game.move(game.Direction.Right, board)
                     break 
             else:
-                # Ai moves
-                pass
+                return_list, steps, win_state = ai.ai_move(board)
 
-            win_state = game.win_game(board)
+            # win_state = game.win_game(board)
 
             if win_state:
                 clear()
