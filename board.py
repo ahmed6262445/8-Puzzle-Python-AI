@@ -1,8 +1,9 @@
 from random import randint
 # from numpy import reshape
 from time import sleep
+
 class Board():
-    def __init__(self, length: int, breadth: int, board : list):
+    def __init__(self, length: int, breadth: int, board: list = [] ):
         """
         Parameters:
             length (int) : It sets the length of the board
@@ -52,3 +53,17 @@ class Board():
                     board += " | "
             board += "\n"
         return board
+
+
+def print_board(board) -> str:
+        """
+        Returns a string of a printed board
+        """
+        board_p = ""
+        for i in range(len(board)):
+            for j in range(len(board)):
+                board_p += str(board[i][j])
+                if j != 2:
+                    board_p += " | "
+            board_p += "\n"
+        return board_p

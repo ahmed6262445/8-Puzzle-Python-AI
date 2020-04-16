@@ -1,6 +1,9 @@
 import puzzle as game
 from copy import deepcopy,copy
 from direction import Direction,Coordinate
+from board import print_board
+from main import clear
+from time import sleep
 
 class Node:
     def __init__(self,board : list, parent = None):
@@ -73,7 +76,9 @@ def a_star(start_state: list):
         closed_list[str(exam_node.state)] = exam_node
 
         if exam_node.state == game.win_state:
-            return (1,2,3)
+            print_path(exam_node)
+            return True
+
         
         neighbors = exam_node.get_neighbors()
 
@@ -83,5 +88,40 @@ def a_star(start_state: list):
             open_list[str(node.state)] = node
         del open_list[str(exam_node.state)]
     return None
+
+
+def array_to_str(arr : list):
+    arr_str = ""
+    for i in range(len(arr)):
+        for j in range(len(arr)):
+            arr_str += str(arr[i][j])
+    return arr_str
+
+def generate_sequence(node : Node):
+    nodes_list = []
+    while(node != None):
+        nodes_list.append(list(node.state))
+        node = node.parent
+    return nodes_list
+    
+
+
+def print_path(node):
+    sequence = generate_sequence(node)
+    goal_state = array_to_str(game.win_state)
+    path =""
+    for i in range(len(sequence)-1,-1,-1):
+        board = print_board(sequence[i])
+        path += array_to_str(sequence[i])
+        path += "\n"
+        sleep(1)
+        clear()
+        print(board)
+        print(f"Goal state: {goal_state}")
+        print(f"Steps taken: {len(sequence)-1}")
+        print("Path taken: ")
+        print(path)
+
+
 
 

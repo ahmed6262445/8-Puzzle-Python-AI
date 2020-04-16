@@ -80,12 +80,15 @@ if __name__ == "__main__": # while True:
                     break 
             else:
                 start = time()
-                return_list, steps, win_state = AI.a_star(board.board)
+                clear()
+                print("Calculating...")
+                win_state = AI.a_star(board.board)
                 end = time()
                 print(f"{end-start}")
 
             if win_state:
+                print("You won!")
                 # clear()
-                print("winning")
-                print(board.print_board())
+                # print("winning")
+                # print(board.print_board())
         # Choice '1' While Loop Ends 
