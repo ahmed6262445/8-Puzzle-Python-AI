@@ -2,7 +2,7 @@ from random import randint
 # from numpy import reshape
 from time import sleep
 class Board():
-    def __init__(self, length: int, breadth: int, board):
+    def __init__(self, length: int, breadth: int, board : list):
         """
         Parameters:
             length (int) : It sets the length of the board
@@ -17,7 +17,7 @@ class Board():
         self.board =  list()
         self.initialize_board(board)
 
-    def initialize_board(self, board):
+    def initialize_board(self, board : list):
         """
             Convertes the 1d List to 3d List 
             e.g.

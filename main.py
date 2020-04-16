@@ -56,32 +56,29 @@ if __name__ == "__main__": # while True:
             user_input = 0
             print(board.print_board())
             
-            if False:
+            if True:
                 print(f"Movement\n'w' to move UP\n's' to move DOWN\n'a' to move LEFT\n'd' to move Right\n\n")
-                while True:
-                    # user_input = input("Enter initial input: ")
+                while True: # True if user wants to play
                     user_input = getch.getch()
                     if user_input != 'w' and user_input != 's' and user_input != 'a' and user_input != 'd':
                         print("Invlaide Input...")
                         continue
+                    move = None
                     if user_input == 'w':
-                        game.move(game.Direction.Up, board)
+                        move =  game.move(game.Direction.Up, board.board)
                     elif user_input == 's':
-                        game.move(game.Direction.Down, board)
+                        move = game.move(game.Direction.Down, board.board)
                     elif user_input == 'a':
-                        game.move(game.Direction.Left, board)
+                        move = game.move(game.Direction.Left, board.board)
                     elif user_input == 'd':
-                        game.move(game.Direction.Right, board)
+                        move = game.move(game.Direction.Right, board.board)
+                    
+                    if move != None:
+                        board.board = move
+                    win_state = game.win_game(board.board)
                     break 
             else:
                 return_list, steps, win_state = AI.a_star(board)
-                # test = []
-                # test = AI.ai_move(board)
-
-                # if test == None:
-                #     print("ERROR")
-                #     exit()
-            # win_state = game.win_game(board)
 
             if win_state:
                 clear()
