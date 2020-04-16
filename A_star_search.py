@@ -1,5 +1,5 @@
 import puzzle as game
-from copy import deepcopy
+from copy import deepcopy,copy
 from direction import Direction,Coordinate
 
 class Node:
@@ -52,14 +52,7 @@ class Node:
             if game.is_valid_move(x,y, len(temp_state)):
                 temp_state = game.move(move, list(temp_state))
                 if temp_state != None:
-                    # temp_state = list(state_move)
-                    # node = Node(temp_node.state, self)
                     list_nodes += [Node(temp_state, self)]
-                    # temp_node.state = game.move(opp_move, temp_node.state)
-
-                    #revert changes made to Parent Node
-
-
         return list_nodes
 
 def get_best_nodes(open_list : dict):
