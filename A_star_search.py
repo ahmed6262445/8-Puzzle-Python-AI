@@ -262,7 +262,7 @@ class Node:
             if game.is_valid_move(x,y, len(self.state.board)):
                 game.move(move, temp_node.state)
                 node = Node(temp_node.state, self)
-                list_nodes.append(deepcopy(node))
+                list_nodes.append(node)
         return list_nodes
 
 def get_best_nodes(open_list):
@@ -279,8 +279,8 @@ def a_star(start_state: Board):
     closed_list = {}
 
     while len(open_list) > 0:
-        exam_node = deepcopy(get_best_nodes(open_list))
-        closed_list[str(exam_node.state.board)] = deepcopy(exam_node)
+        exam_node = get_best_nodes(open_list)
+        closed_list[str(exam_node.state.board)] = exam_node
 
         if exam_node.state.board == game.win_state:
             return (1,2,3)
@@ -293,7 +293,7 @@ def a_star(start_state: Board):
             # print(open_list[str(node.state.board)].f_value < node.f_value)
             if str(node.state.board) in closed_list.keys() or str(node.state.board) in open_list.keys() and open_list[str(node.state.board)].f() < node.f():
                 continue
-            open_list[str(node.state.board)] = deepcopy(node)
+            open_list[str(node.state.board)] = node
         del open_list[str(exam_node.state.board)]
     return None
 
