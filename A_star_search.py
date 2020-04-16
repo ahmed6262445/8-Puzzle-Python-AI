@@ -1,7 +1,6 @@
 import puzzle as game
 from copy import deepcopy
 from direction import Direction,Coordinate
-from board import Board
 
 class Node:
     def __init__(self,board : list, parent = None):
@@ -32,8 +31,9 @@ class Node:
     def get_neighbors(self):
         list_nodes = []
         for i in range(4):
-            temp_node = deepcopy(self)
-            x,y = game.find_empty_space(temp_node.state)
+            temp_state = deepcopy(self.state)
+            x,y = game.find_empty_space(temp_state)
+
             if i == 0:
                 move = Direction.Up
                 inc_x,inc_y = Coordinate.Up.value
@@ -49,13 +49,17 @@ class Node:
             x = inc_x + x
             y = inc_y + y
 
-            if game.is_valid_move(x,y, len(self.state)):
-                state_move = game.move(move, temp_node.state)
+            if game.is_valid_move(x,y, len(temp_state)):
+                temp_state = game.move(move, list(temp_state))
+                if temp_state != None:
+                    # temp_state = list(state_move)
+                    # node = Node(temp_node.state, self)
+                    list_nodes += [Node(temp_state, self)]
+                    # temp_node.state = game.move(opp_move, temp_node.state)
 
-                if state_move != None:
-                    temp_node.state = state_move
-                    node = Node(temp_node.state, self)
-                    list_nodes.append(node)
+                    #revert changes made to Parent Node
+
+
         return list_nodes
 
 def get_best_nodes(open_list : dict):
@@ -68,7 +72,7 @@ def get_best_nodes(open_list : dict):
     return best_node
 
 def a_star(start_state: list):
-    open_list = { str(start_state.list) : Node(start_state)}
+    open_list = { str(start_state) : Node(start_state)}
     closed_list = {}
 
     while len(open_list) > 0:
