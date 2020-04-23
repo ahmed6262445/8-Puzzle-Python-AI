@@ -12,12 +12,12 @@ class Node:
         self.g_value = 0
         if parent != None:
             self.g_value = parent.g_value + 1
-        self.h_value = self.euclidean_distance(board, game.win_state)
+        self.h_value = self.manhattan_distance(board, game.win_state)
 
     def f(self):
         return self.g_value+self.h_value
 
-    def euclidean_distance(self, state : list, final: list) -> int:
+    def manhattan_distance(self, state : list, final: list) -> int:
         cost = 0 
         board_len = len(state)
         for i in range(board_len):
